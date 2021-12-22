@@ -1,0 +1,51 @@
+<style>
+    .go_home{
+    width: 600px;
+    margin:20px auto;
+    }
+    .post_table{
+    width: 600px;
+    margin:20px auto;
+    position: relative;
+    }
+    .new_make{
+    position:absolute;
+    left:150px;
+    top:0%;
+
+    }
+    .body_{
+    width: 600px;
+    margin:20px auto;
+    padding:20px;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
+    }
+</style>
+
+<!-- base.htmlを使う -->
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="alert alert-primary" role="alert">
+    スポーツ
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- 作成画面に飛ぶ -->
+<div class="post_table">
+    <h2>投稿一覧</h2>
+    <a href="{% url 'sports_create' %}" class="btn new_make btn-info" tabindex="-1" role="button" aria-disabled="true">新規作成</a>
+</div>
+
+<div class="body_">
+<ul>
+{% for item in object_list %}
+    <li><a href="{% url 'sports_detail' item.pk %}" class="btn btn-outline-info" role="button" aria-pressed="true">{{ item.title }}</a></li>
+{% endfor %}
+</ul>
+<a href="{% url 'home' %}" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true">ホームに戻る</a></
+</div>
+{% endblock content %}
